@@ -66,8 +66,13 @@ public class HelloAsset extends SimpleApplication {
         //Spatial scene = assetManager.loadModel("main.scene");
         //rootNode.attachChild(scene);
         
-        assetManager.registerLocator("town.zip", ZipLocator.class);
-        Spatial gameLevel = assetManager.loadModel("main.scene");
+        //assetManager.registerLocator("town.zip", ZipLocator.class);
+        //Spatial gameLevel = assetManager.loadModel("main.scene");
+        //gameLevel.setLocalTranslation(0, -5.2f, 0);
+        //gameLevel.setLocalScale(2);
+        //rootNode.attachChild(gameLevel);
+        
+        Spatial gameLevel = assetManager.loadModel("Scenes/Town/main.scene");
         gameLevel.setLocalTranslation(0, -5.2f, 0);
         gameLevel.setLocalScale(2);
         rootNode.attachChild(gameLevel);
