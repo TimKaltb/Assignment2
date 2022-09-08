@@ -2,6 +2,7 @@ package jme3test.helloworld;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.HttpZipLocator;
+import com.jme3.asset.plugins.ZipLocator;
 import com.jme3.font.BitmapText;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
@@ -59,11 +60,16 @@ public class HelloAsset extends SimpleApplication {
         sun.setDirection(new Vector3f(-0.1f, -0.7f, -1.0f));
         rootNode.addLight(sun);
 
-        assetManager.registerLocator("https://storage.googleapis.com/"
-            + "google-code-archive-downloads/v2/code.google.com/"
-            + "jmonkeyengine/wildhouse.zip", HttpZipLocator.class);
-        Spatial scene = assetManager.loadModel("main.scene");
-        rootNode.attachChild(scene);
+        //assetManager.registerLocator("https://storage.googleapis.com/"
+        //    + "google-code-archive-downloads/v2/code.google.com/"
+        //    + "jmonkeyengine/wildhouse.zip", HttpZipLocator.class);
+        //Spatial scene = assetManager.loadModel("main.scene");
+        //rootNode.attachChild(scene);
         
+        assetManager.registerLocator("town.zip", ZipLocator.class);
+        Spatial gameLevel = assetManager.loadModel("main.scene");
+        gameLevel.setLocalTranslation(0, -5.2f, 0);
+        gameLevel.setLocalScale(2);
+        rootNode.attachChild(gameLevel);
     }
 }
