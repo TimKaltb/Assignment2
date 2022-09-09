@@ -72,7 +72,12 @@ public class HelloAsset extends SimpleApplication {
         //gameLevel.setLocalScale(2);
         //rootNode.attachChild(gameLevel);
         
-        Spatial gameLevel = assetManager.loadModel("Scenes/town/main.scene");
+        //Spatial gameLevel = assetManager.loadModel("Scenes/town/main.scene");
+        //gameLevel.setLocalTranslation(0, -5.2f, 0);
+        //gameLevel.setLocalScale(2);
+        //rootNode.attachChild(gameLevel);
+        
+        Spatial gameLevel = assetManager.loadModel("Scenes/town/main.j3o");
         gameLevel.setLocalTranslation(0, -5.2f, 0);
         gameLevel.setLocalScale(2);
         rootNode.attachChild(gameLevel);
