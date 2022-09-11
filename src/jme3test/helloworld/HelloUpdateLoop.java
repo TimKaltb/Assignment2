@@ -3,6 +3,7 @@ package jme3test.helloworld;
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
 
@@ -18,6 +19,9 @@ public class HelloUpdateLoop extends SimpleApplication {
 
     protected Geometry bluecube;
     protected Geometry redcube;
+    protected Geometry whitecube;
+    // creating a boolean that indicates whether the cube is growing or not
+    private boolean isGrowing = true;
 
     @Override
     public void simpleInitApp() {
@@ -42,6 +46,19 @@ public class HelloUpdateLoop extends SimpleApplication {
         redcube.move(3, 0, 0);
         // lets the new cube appear on the screen
         rootNode.attachChild(redcube);
+        
+        // create another box called b3
+        Box b3 = new Box(1, 1, 1);
+        whitecube = new Geometry("white cube", b3);
+        // give the new box a colour
+        Material mat3 = new Material(assetManager,
+          "Common/MatDefs/Misc/Unshaded.j3md");
+        mat3.setColor("Color", ColorRGBA.White);
+        whitecube.setMaterial(mat3);
+        // move the new cube next to the first one
+        whitecube.move(-3, 0, 0);
+        // lets the new cube appear on the screen
+        rootNode.attachChild(whitecube);
     }
 
     /* Use the main event loop to trigger repeating actions. */
@@ -51,6 +68,27 @@ public class HelloUpdateLoop extends SimpleApplication {
         bluecube.rotate(0, 2*tpf, 0);
         // make the red cube rotate twice as fast as the blue cube
         redcube.rotate(0, 4*tpf, 0);
+        // make the white cube pulsate
+        // if the boolean isGrowing is true, the white cube will grow
+        // if the boolean isGrowing is false, the white cube will shrink
+        if (isGrowing) {
+            whitecube.scale(1 + (1.5f * tpf));
+        } else {
+            whitecube.scale(1 - (1.5f * tpf));
+        }
+        
+        // import Vector3f and create a variable called size that defines the size of the cube
+        Vector3f size = whitecube.getLocalScale();
+        
+        // if the size of the cube is bigger than 1.3 of the original size, the boolean
+        // isGrowing becomes false, which will lead to the cube shrinking
+        // if the size of the cube is smaller than 0.7 of the original size, the boolean
+        // isGrowing becomes true, which will lead to the cube growing in size
+        if (size.getX() > 1.3f) {
+                isGrowing = false;
+        } else if (size.getX() < 0.7f) {
+                isGrowing = true;
+        }
     }
     
     // 1.) What happens if you give the rotate() method negative numbers?
@@ -62,5 +100,10 @@ public class HelloUpdateLoop extends SimpleApplication {
     // 2.) Can you create two Geometries next to each other,
     // and make one rotate twice as fast as the other?
     
-    // The answer to this is documentated in the code above.
+    // A: The answer to this is documentated in the code above.
+    
+    
+    // 3.) Can you make a cube that pulsates?
+    
+    // A: The answer to this is documentated in the code above. 
 }
