@@ -20,8 +20,12 @@ public class HelloUpdateLoop extends SimpleApplication {
     protected Geometry bluecube;
     protected Geometry redcube;
     protected Geometry whitecube;
+    protected Geometry randomcube;
+    protected Material mat4;
     // creating a boolean that indicates whether the cube is growing or not
     private boolean isGrowing = true;
+    // creating a float that is the time
+    private float time = 0;
 
     @Override
     public void simpleInitApp() {
@@ -59,6 +63,19 @@ public class HelloUpdateLoop extends SimpleApplication {
         whitecube.move(-3, 0, 0);
         // lets the new cube appear on the screen
         rootNode.attachChild(whitecube);
+        
+        // create another box called b4
+        Box b4 = new Box(1, 1, 1);
+        randomcube = new Geometry("random cube", b4);
+        // give the new box a colour
+        mat4 = new Material(assetManager,
+          "Common/MatDefs/Misc/Unshaded.j3md");
+        mat4.setColor("Color", ColorRGBA.randomColor());
+        randomcube.setMaterial(mat4);
+        // move the new cube next to the first one
+        randomcube.move(6, 0, 0);
+        // lets the new cube appear on the screen
+        rootNode.attachChild(randomcube);
     }
 
     /* Use the main event loop to trigger repeating actions. */
@@ -89,6 +106,15 @@ public class HelloUpdateLoop extends SimpleApplication {
         } else if (size.getX() < 0.7f) {
                 isGrowing = true;
         }
+        
+        // the time variable is increasing with the time per frame variable
+        time += tpf;
+        // if statement that changes the color to a random color everytime
+        // the time variable gets bigger than 1, and then initializes it to 0 again
+        if (time > 1){
+            mat4.setColor("Color", ColorRGBA.randomColor());
+            time = 0;
+        } 
     }
     
     // 1.) What happens if you give the rotate() method negative numbers?
@@ -106,4 +132,9 @@ public class HelloUpdateLoop extends SimpleApplication {
     // 3.) Can you make a cube that pulsates?
     
     // A: The answer to this is documentated in the code above. 
+    
+    
+    // 4.) Can you make a cube that changes color?
+    
+    // A: The answer to this is documentated in the code above.
 }
