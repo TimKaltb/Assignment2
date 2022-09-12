@@ -21,6 +21,7 @@ public class HelloUpdateLoop extends SimpleApplication {
     protected Geometry redcube;
     protected Geometry whitecube;
     protected Geometry randomcube;
+    protected Geometry greencube;
     protected Material mat4;
     // creating a boolean that indicates whether the cube is growing or not
     private boolean isGrowing = true;
@@ -76,6 +77,19 @@ public class HelloUpdateLoop extends SimpleApplication {
         randomcube.move(6, 0, 0);
         // lets the new cube appear on the screen
         rootNode.attachChild(randomcube);
+        
+        // create another box called b5
+        Box b5 = new Box(1, 1, 1);
+        greencube = new Geometry("green cube", b5);
+        // give the new box a colour
+        Material mat5 = new Material(assetManager,
+          "Common/MatDefs/Misc/Unshaded.j3md");
+        mat5.setColor("Color", ColorRGBA.Green);
+        greencube.setMaterial(mat5);
+        // move the new cube next to the first one
+        greencube.move(-6, 0, 0);
+        // lets the new cube appear on the screen
+        rootNode.attachChild(greencube);
     }
 
     /* Use the main event loop to trigger repeating actions. */
@@ -114,7 +128,13 @@ public class HelloUpdateLoop extends SimpleApplication {
         if (time > 1){
             mat4.setColor("Color", ColorRGBA.randomColor());
             time = 0;
-        } 
+        }
+        
+        // this will make the cube rotate towards us
+        greencube.rotate(2*tpf, 0, 0);
+        // this will make the cube move towards us
+        greencube.move(0, 0, 2*tpf);
+        // the cube is rolling towards us, away from the other 4 cubes in z direction
     }
     
     // 1.) What happens if you give the rotate() method negative numbers?
@@ -135,6 +155,11 @@ public class HelloUpdateLoop extends SimpleApplication {
     
     
     // 4.) Can you make a cube that changes color?
+    
+    // A: The answer to this is documentated in the code above.
+    
+    
+    // 5.) Can you make a rolling cube?
     
     // A: The answer to this is documentated in the code above.
 }
