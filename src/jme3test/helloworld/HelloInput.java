@@ -11,6 +11,7 @@ import com.jme3.input.MouseInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 
 /**
@@ -57,8 +58,9 @@ public class HelloInput extends SimpleApplication {
         
         // Exercises:
         // 1.)
-        inputManager.addMapping("Up", new KeyTrigger(KeyInput.KEY_H)); // with the button h, the cube will move up
-        inputManager.addMapping("Down", new KeyTrigger(KeyInput.KEY_L)); // with the button h, the cube will move up
+        // 2.)
+        inputManager.addMapping("Up", new KeyTrigger(KeyInput.KEY_H), new MouseAxisTrigger(MouseInput.AXIS_WHEEL, false)); // with the button h or scrolling up the cube will move up
+        inputManager.addMapping("Down", new KeyTrigger(KeyInput.KEY_L), new MouseAxisTrigger(MouseInput.AXIS_WHEEL, true)); // with the button h or scrolling down the cube will move up
         inputManager.addListener(analogListener, "Up", "Down");
     }
 
