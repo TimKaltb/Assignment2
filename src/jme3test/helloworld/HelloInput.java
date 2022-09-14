@@ -65,6 +65,8 @@ public class HelloInput extends SimpleApplication {
         inputManager.addMapping("Up", new KeyTrigger(KeyInput.KEY_H), new MouseAxisTrigger(MouseInput.AXIS_WHEEL, false)); // with the button h or scrolling up the cube will move up
         inputManager.addMapping("Down", new KeyTrigger(KeyInput.KEY_L), new MouseAxisTrigger(MouseInput.AXIS_WHEEL, true)); // with the button h or scrolling down the cube will move up
         inputManager.addListener(analogListener, "Up", "Down");
+        // Exersice 4: Overriding the WASD keys and switching off the flycam.
+        flyCam.setEnabled(false);
     }
 
     private final ActionListener actionListener = new ActionListener() {
