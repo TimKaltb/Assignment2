@@ -59,6 +59,9 @@ public class HelloInput extends SimpleApplication {
         // Exercises:
         // 1.)
         // 2.)
+        // 3.) In which situation would it be better
+        // to use variables instead of literals for the MouseInput/KeyInput definitions?
+        // A: When the user chooses the controls himself.
         inputManager.addMapping("Up", new KeyTrigger(KeyInput.KEY_H), new MouseAxisTrigger(MouseInput.AXIS_WHEEL, false)); // with the button h or scrolling up the cube will move up
         inputManager.addMapping("Down", new KeyTrigger(KeyInput.KEY_L), new MouseAxisTrigger(MouseInput.AXIS_WHEEL, true)); // with the button h or scrolling down the cube will move up
         inputManager.addListener(analogListener, "Up", "Down");
