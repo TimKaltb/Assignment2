@@ -65,7 +65,7 @@ public class HelloPhysics extends SimpleApplication {
     bulletAppState = new BulletAppState();
     
     // This is the answer to Exercise 1
-    bulletAppState.setDebugEnabled(true);
+    // bulletAppState.setDebugEnabled(true);
     stateManager.attach(bulletAppState);
 
     /** Configure cam to look at scene */
@@ -195,3 +195,9 @@ public class HelloPhysics extends SimpleApplication {
     guiNode.attachChild(ch);
   }
 }
+
+// Exercise 2
+// What happens if you give a static node, such as the floor, a mass of more than 0.0f?
+
+// A: A static node will start to fall down. In the case of the floor, the floor will fall down, and 
+// every object that is subject to gravity will fall with it.
