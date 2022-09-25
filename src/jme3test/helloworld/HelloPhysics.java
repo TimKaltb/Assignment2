@@ -55,7 +55,7 @@ public class HelloPhysics extends SimpleApplication {
     box = new Box(brickLength, brickHeight, brickWidth);
     box.scaleTextureCoordinates(new Vector2f(1f, .5f));
     /** Initialize the floor geometry */
-    floor = new Box(10f, 0.1f, 5f);
+    floor = new Box(30f, 0.1f, 30f);
     floor.scaleTextureCoordinates(new Vector2f(3, 6));
   }
 
@@ -137,8 +137,8 @@ public class HelloPhysics extends SimpleApplication {
   public void initWall() {
     float startX = brickLength / 4;
     float height = 0;
-    for (int j = 0; j < 15; j++) {
-      for (int i = 0; i < 6; i++) {
+    for (int j = 0; j < 40; j++) {
+      for (int i = 0; i < 30; i++) {
         Vector3f vt =
          new Vector3f(i * brickLength * 2 + startX, brickHeight + height, 0);
         makeBrick(vt);
@@ -201,3 +201,11 @@ public class HelloPhysics extends SimpleApplication {
 
 // A: A static node will start to fall down. In the case of the floor, the floor will fall down, and 
 // every object that is subject to gravity will fall with it.
+
+
+// Exercise 3
+// Fill your scene with walls, bricks, and cannon balls. When do you begin to see a performance impact?
+
+// A: When the image started to blur for the floor, that's when the performance was impacted by the floor. 
+// When changing the wall to a size of around 50x40 I see a significant performance impact,
+// which increases with more balls shot.
